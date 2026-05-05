@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Recursos Multimídia — Programação Web 1</h1>
+    </header>
+<main>
+    <section>
+        <h2>Aula em Vídeo</h2>
+        <figure>
+            <video controls width="800" height="450"
+                    poster="poster-aula.jpg"
+                    preload="metadata">
+            <source src="videos/aula-html.mp4" type="video/mp4" />
+            <source src="videos/aula-html.webm" type="video/webm" />
+            <track kind="subtitles" src="legendas/aula-html.vtt"
+                    srclang="pt" label="Português" default />
+            <p>
+                Seu navegador não suporta vídeo HTML5.
+                <a href="videos/aula-html.mp4">Baixe o vídeo aqui</a>.
+            </p>
+                </video>
+            <figcaption>
+                Vídeo 1 — Introdução ao HTML Semântico.
+                Produção própria, IFAL, 2026.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>Audios</h2>
+        <figure>
+            <audio controls preload="metadata">
+            <source src="audios/plantao-globo.mp3" type="audio/mpeg" />
+            <source src="audios/plantao-globo.ogg" type="audio/ogg" />
+            <p>
+                Seu navegador não suporta áudio HTML5.
+                <a href="audios/plantao-globo.mp3">Baixe o áudio aqui</a>.
+            </p>
+            </audio>
+            <figcaption>
+                Audio do Plantão da Globo
+                <a href="transcricao.html">Leia a transcrição completa</a>.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>Vídeo YouTube sobre a História da Computação</h2>
+        <figure>
+            <iframe
+                width="800"
+                height="450"
+                src="https://www.youtube-nocookie.com/embed/SEdFlWwP31o"
+                title="A EVOLUÇÃO DOS COMPUTADORES, do Início até a Atualidade"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+            <figcaption>
+                A EVOLUÇÃO DOS COMPUTADORES, do Início até a Atualidade
+            </figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>Sistemas de Informação</h2>
+        <figure>
+            <picture>
+                <source media="(min-width: 768px)" srcset="img/banner-wide.jpg" />
+                <img src="img/banner-mobile.jpg"
+                    alt="Banner do curso de Programação Web"
+                    width="400"
+                    height="300" />
+            </picture>
+        </figure>
+        <figcaption>
+            Banner oficial do curso de Programação Web
+        </figcaption>
+    </section>
+</main>
+
+<footer>
+<p>
+Atividade 4 — Capítulo 4 | Programação Web 1 |
+Aluno: Marcos André Celestino da Silva | Matrícula: 2026003628 |
+<time datetime="2026-04-05">Maio de 2026</time>
+</p>
+<p><a href="/index.html">← Voltar à página principal</a></p>
+</footer>
+</body>
+</html>
