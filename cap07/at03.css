@@ -1,0 +1,135 @@
+main, header{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+a[href^="https"] {
+  color: green;
+}
+
+a[href^="http:"]:not([href^="https"]) {
+  color: red;
+}
+
+a[href^="http:"]:not([href^="https"])::after {
+  content: " ⚠";
+}
+
+a[href$=".pdf"] {
+  color: orange;
+}
+
+a[href$=".pdf"]::after {
+  content: " [PDF]";
+}
+
+a[href^="#"] {
+  color: gray;
+  font-style: italic;
+}
+
+a[target="_blank"]::after {
+  content: " ↗";
+}
+
+
+#sec-estrutural li:first-child {
+  font-weight: bold;
+}
+
+#sec-estrutural li:last-child {
+  color: blue;
+}
+
+#sec-estrutural li:nth-child(even) {
+  background-color: #d0e4ff;
+}
+
+#sec-estrutural li:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+#sec-estrutural li:nth-child(3) {
+  border-left: 4px solid orange;
+  padding-left: 0.5rem;
+}
+
+
+input:focus {
+  outline: 3px solid blue;
+  outline-offset: 2px;
+}
+
+input:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+input:required {
+  border-left: 4px solid blue;
+}
+
+input:valid {
+  border-color: green;
+}
+
+input:invalid {
+  border-color: red;
+}
+
+input[type="checkbox"]:checked + label {
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: royalblue;
+  color: white;
+}
+
+
+.citacao::before {
+  content: "\201C";
+  font-size: 2rem;
+  color: royalblue;
+}
+
+.citacao::after {
+  content: "\201D";
+  font-size: 2rem;
+  color: royalblue;
+}
+
+.obrigatorio::after {
+  content: " *";
+  color: red;
+}
+
+::selection {
+  background-color: royalblue;
+  color: white;
+}
+
+.input-custom::placeholder {
+  color: #aaaaaa;
+  font-style: italic;
+}
+
+
+h3 + p {
+  font-size: 1.1rem;
+  color: royalblue;
+}
+
+li:not(.ativo) {
+  opacity: 0.5;
+}
+
+li.ativo {
+  font-weight: bold;
+}
+
+li.ativo::before {
+  content: "✔ ";
+  color: green;
+}
