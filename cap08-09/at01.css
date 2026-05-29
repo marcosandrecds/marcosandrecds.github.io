@@ -1,0 +1,647 @@
+/* ============================================================
+   01. VARIÁVEIS CSS (:root)
+   ============================================================ */
+:root {
+  /* Paleta de cores */
+  --cor-fundo:         #0d1a12;        /* verde-floresta escuro */
+  --cor-fundo-alt:     #111f16;        /* fundo levemente mais claro */
+  --cor-superficie:    #162b1e;        /* cards e blocos */
+  --cor-borda:         #2e5240;        /* linhas e divisores */
+  --cor-dourado:       #c9a84c;        /* dourado principal */
+  --cor-dourado-claro: #e6c97a;        /* hover e destaques */
+  --cor-verde-vivo:    #4caf7d;        /* acentos vivos */
+  --cor-texto:         #d4e8d8;        /* texto principal */
+  --cor-texto-suave:   #8ab89a;        /* texto secundário */
+  --cor-branco:        #f0f8f2;        /* branco esverdeado */
+
+  /* Tipografia */
+  --fonte-titulo:      'Playfair Display', 'Georgia', serif;
+  --fonte-corpo:       'Crimson Text', 'Palatino Linotype', serif;
+  --fonte-mono:        'Courier New', monospace;
+  --fonte-sans:        'Trebuchet MS', 'Lucida Sans', sans-serif;
+
+  /* Espaçamentos */
+  --espaco-xs:   0.4rem;
+  --espaco-sm:   0.8rem;
+  --espaco-md:   1.5rem;
+  --espaco-lg:   2.5rem;
+  --espaco-xl:   4rem;
+
+  /* Bordas e sombras */
+  --borda-fina:    1px solid var(--cor-borda);
+  --borda-dupla:   3px double var(--cor-dourado);
+  --sombra-card:   0 4px 24px rgba(0, 0, 0, 0.5);
+  --sombra-texto:  0 2px 8px rgba(0, 0, 0, 0.6);
+
+  /* Transições */
+  --transicao:     all 0.3s ease;
+}
+
+
+/* ============================================================
+   02. RESET E BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 1.1rem;
+  line-height: 1.75;
+
+  /* Textura de fundo via gradiente radial */
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(76, 175, 125, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Elemento raiz da página */
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "intro   sidebar"
+    "main    sidebar";
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-lg) var(--espaco-md);
+  gap: var(--espaco-lg);
+}
+
+/* Elementos decorativos extra (fundo) */
+[class^="extra"] {
+  display: none;
+}
+
+
+/* ============================================================
+   03. TIPOGRAFIA PERSONALIZADA
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+h1 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--cor-dourado-claro);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-shadow: var(--sombra-texto);
+}
+
+h2 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--cor-verde-vivo);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: var(--espaco-xs);
+}
+
+h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cor-dourado);
+  margin-bottom: var(--espaco-sm);
+  padding-bottom: var(--espaco-xs);
+  border-bottom: var(--borda-fina);
+  letter-spacing: 0.04em;
+}
+
+p {
+  margin-bottom: var(--espaco-md);
+  color: var(--cor-texto);
+}
+
+abbr {
+  text-decoration: none;
+  border-bottom: 1px dotted var(--cor-dourado);
+  cursor: help;
+  color: var(--cor-dourado-claro);
+}
+
+
+/* ============================================================
+   04. LAYOUT PRINCIPAL — GRID
+   ============================================================ */
+
+/* Seção intro ocupa a coluna principal, linha 1 */
+.intro {
+  grid-area: intro;
+}
+
+/* Main content ocupa a coluna principal, linha 2 */
+.main.supporting {
+  grid-area: main;
+}
+
+/* Sidebar ocupa toda a coluna lateral */
+.sidebar {
+  grid-area: sidebar;
+}
+
+
+/* ============================================================
+   05. HEADER / INTRO
+   ============================================================ */
+.intro {
+  border: var(--borda-dupla);
+  border-radius: 2px;
+  padding: var(--espaco-xl) var(--espaco-lg);
+  background-color: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ornamento de canto superior esquerdo */
+.intro::before {
+  content: '❧';
+  position: absolute;
+  top: var(--espaco-md);
+  left: var(--espaco-md);
+  font-size: 2rem;
+  color: var(--cor-dourado);
+  opacity: 0.5;
+}
+
+/* Ornamento de canto inferior direito */
+.intro::after {
+  content: '❧';
+  position: absolute;
+  bottom: var(--espaco-md);
+  right: var(--espaco-md);
+  font-size: 2rem;
+  color: var(--cor-dourado);
+  opacity: 0.5;
+  transform: rotate(180deg);
+}
+
+/* Header dentro do intro */
+header[role="banner"] {
+  text-align: center;
+  margin-bottom: var(--espaco-lg);
+  padding-bottom: var(--espaco-lg);
+  border-bottom: var(--borda-dupla);
+}
+
+/* Linha decorativa abaixo do h1 */
+header[role="banner"] h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--cor-verde-vivo);
+  margin: var(--espaco-sm) auto 0;
+}
+
+/* Summary e Preamble lado a lado via Flexbox */
+.summary,
+.preamble {
+  padding: var(--espaco-md);
+}
+
+#zen-summary {
+  background: rgba(201, 168, 76, 0.05);
+  border-left: 3px solid var(--cor-dourado);
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: var(--cor-texto-suave);
+  font-size: 1rem;
+  margin-bottom: var(--espaco-md);
+}
+
+#zen-preamble {
+  position: relative;
+}
+
+#zen-preamble::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  font-size: 5rem;
+  color: var(--cor-dourado);
+  opacity: 0.15;
+  font-family: var(--fonte-titulo);
+  line-height: 1;
+}
+
+
+/* ============================================================
+   06. CONTEÚDO PRINCIPAL — MAIN SUPPORTING
+   ============================================================ */
+.main.supporting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+}
+
+
+/* ============================================================
+   07. ARTIGOS INTERNOS
+   ============================================================ */
+.explanation,
+.participation,
+.benefits,
+.requirements {
+  background-color: var(--cor-superficie);
+  border: var(--borda-fina);
+  border-radius: 2px;
+  padding: var(--espaco-lg);
+  box-shadow: var(--sombra-card);
+  position: relative;
+  transition: var(--transicao);
+}
+
+/* Hover nos artigos */
+.explanation:hover,
+.participation:hover,
+.benefits:hover,
+.requirements:hover {
+  border-color: var(--cor-dourado);
+  box-shadow: 0 6px 32px rgba(201, 168, 76, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Número decorativo em cada artigo */
+.explanation::before { content: '§ I'; }
+.participation::before { content: '§ II'; }
+.benefits::before { content: '§ III'; }
+.requirements::before { content: '§ IV'; }
+
+.explanation::before,
+.participation::before,
+.benefits::before,
+.requirements::before {
+  position: absolute;
+  top: var(--espaco-sm);
+  right: var(--espaco-md);
+  font-family: var(--fonte-titulo);
+  font-size: 0.75rem;
+  color: var(--cor-dourado);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+
+
+/* ============================================================
+   08. FOOTER
+   ============================================================ */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaco-md);
+  padding: var(--espaco-lg) 0 var(--espaco-sm);
+  border-top: var(--borda-fina);
+  margin-top: var(--espaco-md);
+  flex-wrap: wrap;
+}
+
+footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  font-family: var(--fonte-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  transition: var(--transicao);
+}
+
+footer a:hover {
+  background-color: var(--cor-dourado);
+  border-color: var(--cor-dourado);
+  color: var(--cor-fundo);
+  transform: scale(1.1);
+}
+
+
+/* ============================================================
+   09. SIDEBAR
+   ============================================================ */
+.sidebar {
+  position: sticky;
+  top: var(--espaco-md);
+  height: fit-content;
+}
+
+.sidebar .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+}
+
+/* Blocos dentro da sidebar */
+.design-selection,
+.design-archives,
+.zen-resources {
+  background-color: var(--cor-superficie);
+  border: var(--borda-fina);
+  border-radius: 2px;
+  padding: var(--espaco-md);
+  box-shadow: var(--sombra-card);
+}
+
+/* Títulos da sidebar */
+.sidebar h3 {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cor-verde-vivo);
+  border-bottom: 1px solid var(--cor-verde-vivo);
+  margin-bottom: var(--espaco-sm);
+  padding-bottom: var(--espaco-xs);
+}
+
+/* Listas da sidebar */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: var(--espaco-xs) 0;
+  border-bottom: 1px solid rgba(46, 82, 64, 0.4);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.sidebar li:last-child {
+  border-bottom: none;
+}
+
+/* Links de design na sidebar */
+.design-name {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--cor-dourado-claro);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: var(--transicao);
+}
+
+.design-name:hover {
+  color: var(--cor-verde-vivo);
+  letter-spacing: 0.02em;
+}
+
+/* Nome do designer */
+.designer-name {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  font-style: italic;
+  transition: var(--transicao);
+}
+
+.designer-name:hover {
+  color: var(--cor-dourado);
+}
+
+
+/* ============================================================
+   10. LINKS GLOBAIS E HOVER
+   ============================================================ */
+a {
+  color: var(--cor-dourado);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: var(--transicao);
+}
+
+a:hover {
+  color: var(--cor-dourado-claro);
+  border-bottom-color: var(--cor-dourado-claro);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--cor-verde-vivo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Links de navegação da sidebar (archives, resources) */
+.sidebar nav a,
+.sidebar ul a {
+  color: var(--cor-texto-suave);
+  font-size: 0.88rem;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: none;
+  transition: var(--transicao);
+}
+
+.sidebar nav a:hover,
+.sidebar ul a:hover {
+  color: var(--cor-dourado-claro);
+  padding-left: 4px;
+}
+
+/* Indicador de seta */
+.indicator {
+  color: var(--cor-dourado);
+  font-size: 1.1rem;
+}
+
+/* Links de recursos */
+.view-css a,
+.css-resources a,
+.zen-faq a,
+.zen-submit a,
+.zen-translations a {
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-sans);
+  font-size: 0.82rem;
+}
+
+.view-css a:hover,
+.css-resources a:hover,
+.zen-faq a:hover,
+.zen-submit a:hover,
+.zen-translations a:hover {
+  color: var(--cor-verde-vivo);
+}
+
+
+/* ============================================================
+   11. ELEMENTOS DECORATIVOS GLOBAIS
+   ============================================================ */
+
+/* Linha decorativa depois de cada h3 principal */
+.main.supporting h3::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--cor-verde-vivo);
+  margin-top: var(--espaco-xs);
+  transition: var(--transicao);
+}
+
+.explanation:hover h3::after,
+.participation:hover h3::after,
+.benefits:hover h3::after,
+.requirements:hover h3::after {
+  width: 60px;
+}
+
+/* Destaque ao primeiro parágrafo de cada artigo */
+.explanation p:first-of-type,
+.participation p:first-of-type,
+.benefits p:first-of-type,
+.requirements p:first-of-type {
+  font-size: 1.05rem;
+  color: var(--cor-branco);
+}
+
+
+/* ============================================================
+   12. SCROLLBAR PERSONALIZADA
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cor-fundo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cor-borda);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-dourado);
+}
+
+
+/* ============================================================
+   13. MEDIA QUERIES — RESPONSIVIDADE
+   ============================================================ */
+
+/* Tablet: até 960px */
+@media (max-width: 960px) {
+  .page-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "main"
+      "sidebar";
+    padding: var(--espaco-md);
+    gap: var(--espaco-md);
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .sidebar .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaco-md);
+  }
+
+  .intro {
+    padding: var(--espaco-lg) var(--espaco-md);
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Mobile: até 600px */
+@media (max-width: 600px) {
+  :root {
+    --espaco-lg: 1.8rem;
+    --espaco-xl: 2.5rem;
+  }
+
+  .page-wrapper {
+    padding: var(--espaco-sm);
+  }
+
+  .sidebar .wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .intro {
+    padding: var(--espaco-md);
+  }
+
+  .explanation,
+  .participation,
+  .benefits,
+  .requirements {
+    padding: var(--espaco-md);
+  }
+
+  footer {
+    gap: var(--espaco-sm);
+  }
+
+  footer a {
+    width: 36px;
+    height: 36px;
+    font-size: 0.65rem;
+  }
+
+  /* Oculta ornamentos no mobile para limpeza visual */
+  .intro::before,
+  .intro::after {
+    display: none;
+  }
+}
+
+/* Larguras muito pequenas: até 360px */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+
+  .sidebar li {
+    font-size: 0.85rem;
+  }
+}
